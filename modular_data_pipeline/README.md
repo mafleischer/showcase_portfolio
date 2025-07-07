@@ -22,12 +22,12 @@ To demonstrate full-stack engineering proficiency across API design, data handli
     </style> -->
     <tr>
         <!-- github raw links used so this README is rendered on PyPi too -->
-        <th style="background-color: #e2fce6" >Start</th> <!-- color Nyanza -->
-        <td style="background-color: #fff9f3" align="center"><img src="https://raw.githubusercontent.com/mafleischer/showcase_portfolio/modular_data_pipeline/doc/img/start.png" alt="Start"></img></td> <!--  color Floral White -->
+        <th style="background-color: #e2fce6" >Start</th>
+        <td style="background-color: #fff9f3" align="center"><img src="https://raw.githubusercontent.com/mafleischer/showcase_portfolio/main/modular_data_pipeline/doc/img/start.png" alt="Start"></img></td>
     </tr>
     <tr>
         <th style="background-color: #e2fce6" >Logged in and ran the plugin for cloning a Github repo, converting all CSVs and getting a download</th>
-        <td style="background-color: #fff9f3" align="center"><img src="https://raw.githubusercontent.com/mafleischer/showcase_portfolio/modular_data_pipeline/doc/img/logged_in_ran_plugin_git.png" alt="Ran plugin"></img></td>
+        <td style="background-color: #fff9f3" align="center"><img src="https://raw.githubusercontent.com/mafleischer/showcase_portfolio/main/modular_data_pipeline/doc/img/logged_in_ran_plugin_git.png" alt="Ran plugin"></img></td>
     </tr>
  </table>
 

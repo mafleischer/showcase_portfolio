@@ -13,6 +13,15 @@
 ## Why I Built This
 To demonstrate full-stack engineering proficiency across API design, data handling, plugin architecture, secure authentication, DevOps (Docker/Compose), and frontend-backend integration.
 
+## Tech Stack
+| Layer         | Tech Used                             |
+|---------------|----------------------------------------|
+| API Backend   | FastAPI, OAuth2, SQLAlchemy, PostgreSQL|
+| Frontend      | React, Fetch API, FormData             |
+| Data Handling | Dagster, Pandas, OpenPyXL, GitPython   |
+| Auth          | OAuth2 (JWT), FastAPI Security         |
+| DevOps        | Docker, Docker Compose                 |
+
 ## Screenshots <a name="screenshots"></a>
 
 <table>
@@ -31,14 +40,6 @@ To demonstrate full-stack engineering proficiency across API design, data handli
     </tr>
  </table>
 
-## Tech Stack
-| Layer         | Tech Used                             |
-|---------------|----------------------------------------|
-| API Backend   | FastAPI, OAuth2, SQLAlchemy, PostgreSQL|
-| Frontend      | React, Fetch API, FormData             |
-| Data Handling | Dagster, Pandas, OpenPyXL, GitPython   |
-| Auth          | OAuth2 (JWT), FastAPI Security         |
-| DevOps        | Docker, Docker Compose                 |
 
 ## Directory Overview
 | Path           | Purpose                                               |

@@ -13,6 +13,24 @@
 ## Why I Built This
 To demonstrate full-stack engineering proficiency across API design, data handling, plugin architecture, secure authentication, DevOps (Docker/Compose), and frontend-backend integration.
 
+## Screenshots <a name="screenshots"></a>
+
+<table>
+    <!-- <style>
+        th{background-color:#e2fce6;}
+        td{background-color:#fff9f3;}
+    </style> -->
+    <tr>
+        <!-- github raw links used so this README is rendered on PyPi too -->
+        <th style="background-color: #e2fce6" >Start</th> <!-- color Nyanza -->
+        <td style="background-color: #fff9f3" align="center"><img src="https://raw.githubusercontent.com/mafleischer/showcase_portfolio/modular_data_pipeline/doc/img/start.png" alt="Start"></img></td> <!--  color Floral White -->
+    </tr>
+    <tr>
+        <th style="background-color: #e2fce6" >Logged in and ran the plugin for cloning a Github repo, converting all CSVs and getting a download</th>
+        <td style="background-color: #fff9f3" align="center"><img src="https://raw.githubusercontent.com/mafleischer/showcase_portfolio/modular_data_pipeline/doc/img/logged_in_ran_plugin_git.png" alt="Ran plugin"></img></td>
+    </tr>
+ </table>
+
 ## Tech Stack
 | Layer         | Tech Used                             |
 |---------------|----------------------------------------|

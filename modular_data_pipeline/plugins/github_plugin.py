@@ -1,10 +1,12 @@
 import os
 import tempfile
-import zipfile
 import uuid
-from git import Repo
+import zipfile
+
 import pandas as pd
-from .base_plugin import BasePlugin
+from git import Repo
+
+from .base_plugin import EXPORTS_DIR, BasePlugin
 
 
 class GitHubPlugin(BasePlugin):
@@ -25,7 +27,7 @@ class GitHubPlugin(BasePlugin):
                     df.to_excel(xlsx_path, index=False)
 
         zip_filename = f"{uuid.uuid4()}.zip"
-        zip_path = os.path.join("exports", zip_filename)
+        zip_path = os.path.join(EXPORTS_DIR, zip_filename)
         with zipfile.ZipFile(zip_path, "w") as zipf:
             for file in os.listdir(export_dir):
                 zipf.write(os.path.join(export_dir, file), arcname=file)

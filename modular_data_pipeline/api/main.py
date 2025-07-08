@@ -1,32 +1,46 @@
 import os
+from pathlib import Path
 import shutil
+import sys
+from contextlib import asynccontextmanager
 from datetime import timedelta
 from uuid import uuid4
 
+from api.auth import authenticate_user, create_access_token, get_current_user
 from fastapi import Depends, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.staticfiles import StaticFiles
-
-from api.auth import authenticate_user, create_access_token, get_current_user
 from models import PipelineLog, Session
 from plugins.csv_plugin import CSVPlugin
 from plugins.github_plugin import GitHubPlugin
 
-app = FastAPI()
+sys.path.append("..")
 
-os.makedirs("static/exports", exist_ok=True)
+from plugins.base_plugin import EXPORTS_DIR
 
-
-@app.on_event("startup")
-def startup_event():
-    os.makedirs("exports", exist_ok=True)
-    os.makedirs("temp", exist_ok=True)
+TEMP_DIR = "temp"
+FRONTEND_BUILD = "frontend_build"
 
 
-app.mount("/exports", StaticFiles(directory="exports"), name="exports")
-app.mount("/ui", StaticFiles(directory="frontend_build", html=True), name="frontend")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    os.makedirs(EXPORTS_DIR, exist_ok=True)
+    os.makedirs(TEMP_DIR, exist_ok=True)
+    yield
+    shutil.rmtree(TEMP_DIR)
+    shutil.rmtree(EXPORTS_DIR)
+
+
+app = FastAPI(lifespan=lifespan)
+
+
+app.mount("/exports", StaticFiles(directory=EXPORTS_DIR), name="exports")
+
+# Frontend served in the container:
+if Path(FRONTEND_BUILD).exists():
+    app.mount("/ui", StaticFiles(directory=FRONTEND_BUILD, html=True), name="frontend")
 
 origins = ["http://localhost:3000", "http://localhost:8000"]
 
@@ -46,7 +60,7 @@ def root_redirect():
 
 @app.get("/ui")
 def serve_root():
-    return FileResponse("frontend_build/index.html")
+    return FileResponse(f"{FRONTEND_BUILD}/index.html")
 
 
 @app.post("/token")
@@ -70,7 +84,7 @@ def run_plugin(
     if plugin_type == "github":
         plugin = GitHubPlugin(repo_url)
     elif plugin_type == "csv":
-        filename = f"temp/{uuid4()}_{file.filename}"
+        filename = f"{TEMP_DIR}/{uuid4()}_{file.filename}"
         with open(filename, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         plugin = CSVPlugin(filename)
